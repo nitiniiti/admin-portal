@@ -1,8 +1,4 @@
-# Github Node Default
-
-pids
-logs
-results
+# GITIGNORE
 
 npm-debug.log
 package-lock.json
@@ -15,13 +11,8 @@ public/lib
 test/coverage/
 migrations/
 
-# Configuration Files
-/config/env/development.json5
-/config/env/production.json5
-/config/env/test.json5
-/coverage
-public/uploads
-*.local
+dist
+
 
 # IDE files
 .idea
