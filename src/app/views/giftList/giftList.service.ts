@@ -17,4 +17,8 @@ export class ListGiftService {
         return this.http.get(environment.apiBaseUrl + 'gift/fetchTemplates')
     }
 
+    removeGift(gift) {
+        return this.http.delete(environment.apiBaseUrl + 'gift/' + gift.id)
+    }
+
 }

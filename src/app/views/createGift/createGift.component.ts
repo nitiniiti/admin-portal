@@ -29,8 +29,14 @@ export class CreateGiftComponent {
     }
     console.log(giftObject);
     this.createGiftService.saveGift(giftObject).subscribe((data: any) => {
+      this.giftTitle = '';
+      this.giftType = '';
+      this.imageUrl = '';
+      this.giftData = '';
+      this.giftPrice = '';
       console.log(data);
       alert(data.data.message);
+      
     })
   }
 
