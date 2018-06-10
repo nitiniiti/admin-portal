@@ -28,10 +28,12 @@ export class LoginComponent {
         this.router.navigate(['/dashboard'])
       }, (err) => {
         this.showError = true;
+        this.showMessage = false;
         console.log('error', err);
       })
     } else {
       this.showMessage = true;
+      this.showError = false;
     }
   }
 }
