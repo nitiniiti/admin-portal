@@ -27,6 +27,7 @@ import { GiftListComponent } from './views/giftList/giftList.component';
 import { EventListComponent } from './views/eventList/eventList.component';
 import { CreateEventComponent } from './views/createEvent/createEvent.component';
 import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 
 const APP_CONTAINERS = [
@@ -63,7 +64,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     TabsModule.forRoot(),
     ChartsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule
   ],
   declarations: [
     AppComponent,

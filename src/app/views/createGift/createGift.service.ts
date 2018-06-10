@@ -14,6 +14,13 @@ export class CreateGiftService {
 
     saveGift(data) {
         console.log(data);
+        var headers = new HttpHeaders();
+        // headers.append('Content-Type', 'multipart/form-data');
+        // headers.append("Accept", 'multipart/form-data');
+        /* return this.http.post(environment.apiBaseUrl + 'gift', data, {
+            headers: new HttpHeaders().set('Content-Type', 'multipart/form-data'),
+        }) */
+
         return this.http.post(environment.apiBaseUrl + 'gift', data)
     }
 

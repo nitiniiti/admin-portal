@@ -39,20 +39,15 @@
                             </div>
                         </div>
                     </div>
-                    <!--  <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <span class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary" [(ngModel)]="imageUrl">
-                                        <i></i>Upload Image</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="file-input">Upload Image</label>
                         <div class="col-md-9">
-                            <input type="file" id="file-input" name="file-input">
+                            <!--     <input type="file" id="file-input" name="file-input" [(ngModel)]="image"> -->
+
+                            <input type="file" value="upload" #file [(ngModel)]="image" name="image" (change)="fileChange($event)" />
+
+                            <!-- <input type="file" [uploader]="upload" id="file" /> -->
+
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-success btn pull-right" (click)="saveImage()">
