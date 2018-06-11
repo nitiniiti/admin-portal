@@ -18,7 +18,7 @@
                         <div class="form-group col-sm-12">
                             <label for="ccmonth">Gift Type</label>
                             <select class="form-control" id="ccmonth" [(ngModel)]="giftType">
-                                <option>minute</option>
+                                <option>minutes</option>
                                 <option>data</option>
                             </select>
                         </div>
@@ -49,6 +49,9 @@
                             <!-- <input type="file" [uploader]="upload" id="file" /> -->
 
                         </div>
+                    </div>
+                    <div *ngIf="errorMessage">
+                        <p style="color:#ff0000">All fields are mandatory</p>
                     </div>
                     <button type="submit" class="btn btn-sm btn-success btn pull-right" (click)="saveImage()">
                         <i class="fa fa-dot-circle-o"></i>Submit</button>

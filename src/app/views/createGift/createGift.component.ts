@@ -20,28 +20,35 @@ export class CreateGiftComponent {
   image;
   giftData;
   giftPrice;
+  errorMessage;
 
 
 
   saveImage() {
-    let giftObject = {
-      giftTitle: this.giftTitle,
-      giftType: this.giftType,
-      giftData: this.giftData,
-      giftPrice: this.giftPrice,
-      image: this.image
-    }
-    console.log(giftObject);
-    this.createGiftService.saveGift(giftObject).subscribe((data: any) => {
-      this.giftTitle = '';
-      this.giftType = '';
-      this.image = '';
-      this.giftData = '';
-      this.giftPrice = '';
-      console.log(data);
-      alert(data.data.message);
+    this.errorMessage = false;
+    if (this.giftTitle && this.giftData && this.giftPrice && this.giftType && this.image) {
 
-    })
+      let giftObject = {
+        giftTitle: this.giftTitle,
+        giftType: this.giftType,
+        giftData: this.giftData,
+        giftPrice: this.giftPrice,
+        image: this.image
+      }
+      console.log(giftObject);
+      this.createGiftService.saveGift(giftObject).subscribe((data: any) => {
+        this.giftTitle = '';
+        this.giftType = '';
+        this.image = '';
+        this.giftData = '';
+        this.giftPrice = '';
+        console.log(data);
+        alert(data.data.message);
+
+      })
+    } else {
+      this.errorMessage = true;
+    }
   }
 
   fileChange() {

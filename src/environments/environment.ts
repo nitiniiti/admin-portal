@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000/admin/'
+  apiBaseUrl: 'http://10.123.54.92:3000/admin/'
 };

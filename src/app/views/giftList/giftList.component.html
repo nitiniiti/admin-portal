@@ -11,7 +11,11 @@
                             <input type="text" class="form-control" [(ngModel)]="gift.giftTitle" placeholder="Gift Name" [readonly]="gift.readonly">
                         </div>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="gift.giftType" placeholder="Gift Type" [readonly]="gift.readonly">
+                            <select class="form-control" id="ccmonth" [(ngModel)]="gift.giftType"  [disabled]="gift.readonly">
+                                <option>minutes</option>
+                                <option>data</option>
+                            </select>
+                            <!--   <input type="text" class="form-control" [(ngModel)]="gift.giftType" placeholder="Gift Type" [readonly]="gift.readonly"> -->
                         </div>
                         <div class="col-md-2">
                             <input type="text" class="form-control" [(ngModel)]="gift.giftData" placeholder="Gift Data" [readonly]="gift.readonly">
