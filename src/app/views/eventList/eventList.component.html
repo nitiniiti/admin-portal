@@ -1,1 +1,41 @@
-Event List
+<form>
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Event List
+                    </div>
+                    <div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td width="35%">
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" value="Invite Users" readonly />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info" (click)="downloadSampleCSVFile()">Download Sample</button>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" (change)="onChange($event);" /> 
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-s"
+                                            (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload Excel
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
