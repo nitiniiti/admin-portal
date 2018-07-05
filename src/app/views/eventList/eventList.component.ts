@@ -15,11 +15,8 @@ export class EventListComponent {
 	constructor() {
 		this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
 			if (this.target) this.target.value = '';
-			if (status == 200) {
-				alert('File uploaded successfully');
-			} else {
-				alert('Error while trying to upload the file');
-			}
+			const resp = JSON.parse(response);
+			alert(resp.message);
 		};
 	}
 	@ViewChild('file') file;
@@ -27,6 +24,11 @@ export class EventListComponent {
 
 	downloadSampleCSVFile() {
 		const data = [
+			{
+				name: 'Name',
+				phone: 'Phone',
+				email: 'Email'
+			},
 			{
 			  name: 'Customer 1 Name',
 			  phone: '6612345890',
