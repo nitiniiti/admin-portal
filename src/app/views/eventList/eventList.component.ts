@@ -8,7 +8,8 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class EventListComponent {
 	public uploader:FileUploader = new FileUploader({
-		url:'http://localhost:3000/admin/upload'
+		url:'http://localhost:3000/admin/upload',
+		allowedMimeType: ['text/csv', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'] 
 	});
 	private target: any;
 	constructor() {
