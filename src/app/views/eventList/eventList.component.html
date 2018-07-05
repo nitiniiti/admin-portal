@@ -12,7 +12,7 @@
                                 <tr>
                                     <td width="35%">
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" value="Invite Users" readonly />
+                                            <input type="text" class="form-control" value="    Invite Users" readonly />
                                         </div>
                                     </td>
                                     <td>
@@ -31,6 +31,26 @@
                                             <span class="glyphicon glyphicon-upload"></span> Upload Excel
                                         </button>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" value="Get Invite Codes" readonly />
+                                        </div>
+                                    </td>
+                                    <td width="10%">
+                                        <input type="number" id="passes" name="passes" [(ngModel)]="noOfPasses" class="form-control" placeholder="Number of Codes"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-s"
+                                            (click)="downloadExcel($event);">
+                                            <span class="glyphicon glyphicon-upload"></span> Download Excel
+                                        </button>
+                                    </td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
