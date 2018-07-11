@@ -14,6 +14,9 @@ import { GiftListComponent } from './views/giftList/giftList.component';
 import { EventListComponent } from './views/eventList/eventList.component';
 import { CreateEventComponent } from './views/createEvent/createEvent.component';
 import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
+import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
+import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
 
 
 export const routes: Routes = [
@@ -73,6 +76,27 @@ export const routes: Routes = [
         component: CreateEventComponent,
         data: {
           title: 'Create Event'
+        }
+	  },
+	  {
+        path: 'invite-by-sms',
+        component: SMSInviteComponent,
+        data: {
+          title: 'Invite customers by SMS'
+        }
+	  },
+	  {
+        path: 'invite-by-email',
+        component: EmailInviteComponent,
+        data: {
+          title: 'Invite customers by Email'
+        }
+	  },
+	  {
+        path: 'invite-codes',
+        component: GenerateInviteCodeComponent,
+        data: {
+          title: 'Generate Invite Codes'
         }
       }
     ]
