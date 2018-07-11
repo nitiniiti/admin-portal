@@ -20,6 +20,9 @@ export class SMSInviteComponent {
 			const resp = JSON.parse(response);
 			alert(resp.message);
 		};
+		this.uploader.onBeforeUploadItem = (item) => {
+			item.withCredentials = false;
+		}
 	}
 	@ViewChild('file') file;
 	private selectedFile;
