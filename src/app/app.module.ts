@@ -27,6 +27,9 @@ import { GiftListComponent } from './views/giftList/giftList.component';
 import { EventListComponent } from './views/eventList/eventList.component';
 import { CreateEventComponent } from './views/createEvent/createEvent.component';
 import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
+import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
+import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 
@@ -78,7 +81,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     GiftListComponent,
     EventListComponent,
     CreateEventComponent,
-    MonitoringComponent
+    MonitoringComponent,
+    SMSInviteComponent,
+    EmailInviteComponent,
+    GenerateInviteCodeComponent
   ],
   providers: [{
     provide: LocationStrategy,

@@ -8,13 +8,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root',
 })
-export class EventListService {
+export class EarlyAccessService {
 
     constructor(private http: HttpClient, ) { }
 
     getPasscodes(noOfPasses) {
         var headers = new HttpHeaders();
-        // return this.http.post(environment.apiBaseUrl + 'gift', data);
         return this.http.get('http://localhost:3000/admin/fetchPasscodes/'+noOfPasses);
     }
 
