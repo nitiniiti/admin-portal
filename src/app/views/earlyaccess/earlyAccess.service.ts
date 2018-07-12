@@ -14,7 +14,7 @@ export class EarlyAccessService {
 
     getPasscodes(noOfPasses) {
         var headers = new HttpHeaders();
-        return this.http.get('http://localhost:3000/admin/fetchPasscodes/'+noOfPasses);
+        return this.http.get(environment.apiBaseUrl+'fetchPasscodes/'+noOfPasses);
     }
 
 }
