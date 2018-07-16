@@ -19,7 +19,7 @@ export class DefaultLayoutComponent {
 
     this.changes.observe(<Element>this.element, {
       attributes: true
-    });
+	});
   }
 
   logout() {
