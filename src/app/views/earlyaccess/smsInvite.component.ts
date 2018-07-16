@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { FileUploader, FileUploaderOptions } from 'ng2-file-upload';
 import { EarlyAccessService } from './earlyAccess.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'gift-dashboard',
@@ -9,7 +10,7 @@ import { EarlyAccessService } from './earlyAccess.service';
 })
 export class SMSInviteComponent {
 	public uploader:FileUploader = new FileUploader({
-		url:'http://localhost:3000/admin/upload/sms',
+		url: environment.apiBaseUrl+'upload/sms',
 		allowedMimeType: ['text/csv', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'] 
 	});
 	noOfPasses: number = 0;
