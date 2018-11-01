@@ -30,6 +30,8 @@ import { MonitoringComponent } from './views/monitoring/monitoring.component';
 import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
 import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
 import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
+import { PushNotificationComponent } from './views/push-notification/push-notification.component';
+
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 
@@ -50,6 +52,7 @@ import { AppRoutingModule } from './app.routing';
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -64,6 +67,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
     FormsModule,
@@ -84,7 +88,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     MonitoringComponent,
     SMSInviteComponent,
     EmailInviteComponent,
-    GenerateInviteCodeComponent
+    GenerateInviteCodeComponent,
+    PushNotificationComponent
   ],
   providers: [{
     provide: LocationStrategy,

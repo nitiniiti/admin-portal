@@ -8,6 +8,11 @@ export const navItems = [
       text: 'NEW'
     }
   },
+  {
+    name: 'Push Notification',
+    url: '/app-push-notification',
+    icon: 'icon-cursor'
+  },
   // {
   //   name: 'Gift Shop',
   //   url: '/base',
