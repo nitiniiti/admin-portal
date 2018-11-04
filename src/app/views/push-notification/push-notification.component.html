@@ -14,8 +14,8 @@
                     <i class="icon-pin"></i>
                   </span>
                 </div>
-                <input type="text" [(ngModel)]="username" class="form-control" placeholder="Title">
-                <input type="text" [(ngModel)]="username" class="form-control" placeholder="Arabic Title">
+                <input type="text" [(ngModel)]="pushNotificationData.titleEn" class="form-control" placeholder="Title">
+                <input type="text" [(ngModel)]="pushNotificationData.titleAr" class="form-control" placeholder="Arabic Title">
 
               </div>
 
@@ -28,107 +28,83 @@
                     <i class="icon-speech"></i>
                   </span>
                 </div>
-                <input type="password" [(ngModel)]="password" class="form-control" placeholder="Message">
-                <input type="password" [(ngModel)]="password" class="form-control" placeholder="Arabic Message">
+                <input type="text" [(ngModel)]="pushNotificationData.messageEn" class="form-control" placeholder="Message">
+                <input type="text" [(ngModel)]="pushNotificationData.messageAr" class="form-control" placeholder="Arabic Message">
               </div>
 
               <h6>(Optional) Filter Receivers</h6>
 
               <div class="row mb-4 text-center">
                 <div class="col-sm">
-                  <p class="text-muted">Yaqoot Push Notification Service</p>
+                  <p class="text-muted">Language</p>
                   <div class="btn-group" dropdown>
-                    <button id="button-autoclose1" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                            aria-controls="dropdown-autoclose1">
-                      Language <span class="caret"></span>
-                    </button>
-                    <ul id="dropdown-autoclose1" *dropdownMenu class="dropdown-menu"
-                        role="menu" aria-labelledby="button-autoclose1">
-                      <li role="menuitem"><a class="dropdown-item" href="#">Both</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">Arabic</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">English</a></li>
-                    </ul>
+                    <select class="button-autoclose1" [(ngModel)]="pushNotificationData.language" (change)="filterItem()">
+                      <option *ngFor="let pow of [{'value': 'en', name: 'English'},{'value': 'ar', name: 'Arabic'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-sm">
-                  <p class="text-muted">Yaqoot Push Notification Service</p>
-                  <div class="btn-group" dropdown>
-                    <button id="button-autoclose1" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                            aria-controls="dropdown-autoclose1">
-                      App Version <span class="caret"></span>
-                    </button>
-                    <ul id="dropdown-autoclose1" *dropdownMenu class="dropdown-menu"
-                        role="menu" aria-labelledby="button-autoclose1">
-                      <li role="menuitem"><a class="dropdown-item" href="#">All</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">1.2.0</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">1.1.0</a></li>
-                    </ul>
-                  </div>
+                  <p class="text-muted">Platform</p>
+                  <select class="button-autoclose1" [(ngModel)]="pushNotificationData.phone_type" (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': 'ios', name: 'iOS'},{'value': 'android', name: 'Android'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
                 </div>
                 <div class="col-sm">
-                  <p class="text-muted">Yaqoot Push Notification Service</p>
-                  <div class="btn-group" dropdown [autoClose]="false">
-                    <button id="button-autoclose2" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                            aria-controls="dropdown-autoclose2">
-                      Platform Type<span class="caret"></span>
-                    </button>
-                    <ul id="dropdown-autoclose2" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-autoclose2">
-                      <li role="menuitem"><a class="dropdown-item" href="#">Both</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">iOS</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">Android</a></li>
-                    </ul>
-                  </div>
+                    <p class="text-muted">Status</p>
+                  <select class="button-autoclose1" [(ngModel)]="pushNotificationData.status"  (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': '1', name: '1'},{'value': '0', name: '0'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
                 </div>
                 <div class="col-sm">
-                    <p class="text-muted">Yaqoot Push Notification Service</p>
-                    <div class="btn-group" dropdown [autoClose]="false">
-                      <button id="button-autoclose2" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                              aria-controls="dropdown-autoclose2">
-                        Account Status<span class="caret"></span>
-                      </button>
-                      <ul id="dropdown-autoclose2" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-autoclose2">
-                        <li role="menuitem"><a class="dropdown-item" href="#">Both</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#">iOS</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#">Android</a></li>
-                      </ul>
-                    </div>
+                    <p class="text-muted">App Version</p>
+                  <input type="text" [(ngModel)]="pushNotificationData.app_version" class="form-control" placeholder="Version">
+
                 </div>
-                <div class="col-sm">
-                    <p class="text-muted">Yaqoot Push Notification Service</p>
-                    <div class="btn-group" dropdown [autoClose]="false">
-                      <button id="button-autoclose2" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                              aria-controls="dropdown-autoclose2">
-                        OTP Status<span class="caret"></span>
-                      </button>
-                      <ul id="dropdown-autoclose2" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-autoclose2">
-                        <li role="menuitem"><a class="dropdown-item" href="#">Both</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#">iOS</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#">Android</a></li>
-                      </ul>
-                    </div>
-                </div>  
               </div>
 
               <div class="row mb-4 text-center">
                   <div class="col-sm">
-                      <p class="text-muted">Yaqoot Push Notification Service</p>
+                    <p class="text-muted">Registartion from</p>
+                    <input type="text" [(ngModel)]="pushNotificationData.created.from" class="form-control" placeholder="10/11/2018" (change)="filterItem()" >
+                    <input type="text" [(ngModel)]="pushNotificationData.created.to" class="form-control" placeholder="12/11/2018" (change)="filterItem()">
+
                   </div>
               </div>
 
-              <div *ngIf="showMessage">
-                <p style="color:#ff0000">Login Details missing</p>
-              </div>
-
-              <div *ngIf="showError">
-                <p style="color:#ff0000">Login Details Doesn't Exist</p>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <button type="button" (click)="login()" class="btn btn-primary px-4">Send</button>
+              <div class="row mb-4 text-center">
+                <div class="col-sm">
+                  <p class="text-muted">Has Send a Gift</p>
+                  <select class="button-autoclose1" [(ngModel)]="pushNotificationData.hasSentGift" (change)="filterItem()" >
+                    <option *ngFor="let pow of [{'value': true, name: 'True'},{'value': false, name: 'False'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
                 </div>
               </div>
 
+              <div class="row mb-4 text-center" *ngIf="pushNotificationData.hasSentGift === 'true'">
+                <div class="col-sm">
+                  <p class="text-muted">Gift Type</p>
+                  <select class="button-autoclose1" [(ngModel)]="pushNotificationData.gift_type" (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': 'free', name: 'free'},{'value': 'ecomm', name: 'Paid Gift'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-6">
+                  <button type="button" (click)="SendPushNotification()" class="btn btn-primary px-4">Send</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <h2>selected users: <strong>{{users.count}}</strong></h2>
+
+                <ul class="heroes">
+                  <li *ngFor="let user of users.items">
+                    <span class="badge">{{user.phone_no}}</span> {{user.name}}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
