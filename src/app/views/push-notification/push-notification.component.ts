@@ -31,7 +31,9 @@ export class PushNotificationComponent implements OnInit {
 
     SendPushNotification() {
 
-        Object.assign(this.pushNotificationData, {sendNotification: true});
+        if (window.confirm('are you sure you want to send notification')) {
+            Object.assign(this.pushNotificationData, {sendNotification: true});
+        }
         this.filterItem();
         // alert(JSON.stringify(this.pushNotificationData));
     }
