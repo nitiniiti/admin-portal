@@ -27,6 +27,7 @@ export class PushNotificationComponent implements OnInit {
         app_version: '',
         status: '',
         hasSentGift: '',
+        url: null,
         created: {
             from: '',
             to: ''
@@ -68,6 +69,15 @@ export class PushNotificationComponent implements OnInit {
         if (this.pushNotificationData.messageAr === '') {
             this.showAlert('danger', 'Arabic Message must be filled', 8000)
             return
+        }
+
+        if (this.pushNotificationData.url != null) {
+            let expression = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}?/gi;
+            var regex = new RegExp(expression);
+            if (!this.pushNotificationData.url.match(regex)) {
+                this.showAlert('warning', 'Url is not correct.', 8000)
+                return
+            }
         }
 
         if (window.confirm('are you sure you want to send notification')) {
