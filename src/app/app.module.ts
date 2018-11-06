@@ -52,9 +52,13 @@ import { AppRoutingModule } from './app.routing';
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+
 
 @NgModule({
   imports: [
@@ -69,6 +73,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
+    AlertModule.forRoot(),
+    ModalModule.forRoot(),
     ChartsModule,
     FormsModule,
     HttpClientModule,
@@ -89,7 +95,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     SMSInviteComponent,
     EmailInviteComponent,
     GenerateInviteCodeComponent,
-    PushNotificationComponent
+    PushNotificationComponent,
+    ConfirmComponent
   ],
   providers: [{
     provide: LocationStrategy,
