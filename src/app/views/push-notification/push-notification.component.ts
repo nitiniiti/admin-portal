@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
+import { PushNotificationService } from '../../services';
+
+import { FilterReciversResponse } from '../../models'
 
 @Component({
   selector: 'app-push-notification',
@@ -15,8 +17,6 @@ export class PushNotificationComponent implements OnInit {
         this.filterItem();
     }
 
-    locale = 'en';
-
     pushNotificationData = {
         titleEn : '',
         titleAr : '',
@@ -27,6 +27,7 @@ export class PushNotificationComponent implements OnInit {
         app_version: '',
         status: '',
         hasSentGift: '',
+        openStore: 'false',
         url: null,
         created: {
             from: '',
@@ -41,8 +42,10 @@ export class PushNotificationComponent implements OnInit {
     };
 
     alerts: any[] = [];
+    urlTemplate: boolean = true
+    isCollapsed = true
      
-    constructor(private http: HttpClient, private dateConfig: BsDatepickerConfig) { 
+    constructor(private dateConfig: BsDatepickerConfig, private push: PushNotificationService) { 
         this.dateConfig.containerClass = 'theme-blue'
         this.dateConfig.rangeInputFormat = 'MM/DD/YYYY';
         this.dateConfig.dateInputFormat = 'MM/DD/YYYY';
@@ -50,6 +53,17 @@ export class PushNotificationComponent implements OnInit {
 
     confirmResponse(event) {
         console.log(event + ' test')
+    }
+
+    showUrlTemplete(event) {
+        if (event) {
+            this.urlTemplate = event
+            this.pushNotificationData.openStore = 'false'
+        } else {
+            this.urlTemplate = event
+            this.pushNotificationData.openStore = 'true'
+        }
+        this.filterItem()
     }
 
     SendPushNotification() {
@@ -80,6 +94,10 @@ export class PushNotificationComponent implements OnInit {
             }
         }
 
+        if (!this.urlTemplate) {
+            this.pushNotificationData.url = null
+        }
+
         if (window.confirm('are you sure you want to send notification')) {
             Object.assign(this.pushNotificationData, {sendNotification: true});
         }
@@ -96,23 +114,17 @@ export class PushNotificationComponent implements OnInit {
     }
 
     filterItem(payload?) {
-
         let finalPayload;
         if (payload) {
             finalPayload = payload;
         } else {
             finalPayload = this.pushNotificationData;
         }
-
-        this.http.post(environment.apiBaseUrl + 'users', finalPayload).subscribe((res) => {
-
-            this.users.count = res['data'].count;
-            this.users.items = res['data'].users;
-            console.log(res);
-        }, (err) => {
-            console.log(err);
-        });
-
+        this.push.filterRecivers(finalPayload).subscribe((filter: FilterReciversResponse) => {
+            this.users.count = filter.data.count
+            this.users.items  = filter.data.users
+        })
+        Object.assign(this.pushNotificationData, {sendNotification: false});
     }
 
 }

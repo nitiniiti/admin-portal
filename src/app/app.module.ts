@@ -6,7 +6,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -31,8 +31,7 @@ import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
 import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
 import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
 import { PushNotificationComponent } from './views/push-notification/push-notification.component';
-
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 
 const APP_CONTAINERS = [
@@ -57,7 +56,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { JwtInterceptor } from './helper/jwt.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { AuthService, PushNotificationService } from './services';
 
 
 @NgModule({
@@ -75,6 +79,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     TabsModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CollapseModule.forRoot(),
     ChartsModule,
     FormsModule,
     HttpClientModule,
@@ -98,10 +104,16 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     PushNotificationComponent,
     ConfirmComponent
   ],
-  providers: [{
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthService,
+    PushNotificationService,
+    {
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+    useClass: HashLocationStrategy,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

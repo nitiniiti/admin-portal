@@ -30,38 +30,38 @@ export const navItems = [
   //     }
   //   ]
   // },
-  {
-    name: 'Event Management',
-    url: '/base',
-    icon: 'icon-puzzle',
-    children: [
-      {
-        name: 'Show Events',
-        url: '/show-events',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Add Event',
-        url: '/add-event',
-        icon: 'icon-star'
-      }
-    ]
-  },
-  {
-    name: 'Invite By SMS',
-    url: '/invite-by-sms',
-    icon: 'icon-puzzle',
-  },
-  {
-    name: 'Invite By Email',
-    url: '/invite-by-email',
-    icon: 'icon-puzzle',
-  },
-  {
-    name: 'Generate Invite Codes',
-    url: '/invite-codes',
-    icon: 'icon-puzzle',
-  },
+  // {
+  //   name: 'Event Management',
+  //   url: '/base',
+  //   icon: 'icon-puzzle',
+  //   children: [
+  //     {
+  //       name: 'Show Events',
+  //       url: '/show-events',
+  //       icon: 'icon-cursor'
+  //     },
+  //     {
+  //       name: 'Add Event',
+  //       url: '/add-event',
+  //       icon: 'icon-star'
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: 'Invite By SMS',
+  //   url: '/invite-by-sms',
+  //   icon: 'icon-puzzle',
+  // },
+  // {
+  //   name: 'Invite By Email',
+  //   url: '/invite-by-email',
+  //   icon: 'icon-puzzle',
+  // },
+  // {
+  //   name: 'Generate Invite Codes',
+  //   url: '/invite-codes',
+  //   icon: 'icon-puzzle',
+  // },
   // {
   //   name: 'Monitoring',
   //   url: '/base',

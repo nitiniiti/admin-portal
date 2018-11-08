@@ -106,29 +106,62 @@
               <div class="dropdown-divider mb-4"></div>
 
               <h4 class="title">(Optional) External Url</h4>
-              <p class="text-muted">If url provided the app will open the external url in the browser. If not the app will open at normal state.</p>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="icon-link"></i>
-                  </span>
-                </div>
-                <input type="text" [(ngModel)]="pushNotificationData.url" class="form-control" placeholder="External Url. ex https://www.google.com">
 
+
+
+              <div class="row mb-4">
+                <div class="col-sm">
+                  <!-- Default unchecked -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked" value="store" name="defaultExampleRadios" (click)="showUrlTemplete(false)">
+                    <label class="custom-control-label" for="defaultUnchecked">Open the store (iOS & Android).</label>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <!-- Default checked -->
+                  <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="defaultChecked" value="url" name="defaultExampleRadios" checked (click)="showUrlTemplete(true)">
+                      <label class="custom-control-label" for="defaultChecked">Do not open the store.</label>
+                  </div>
+                </div>
               </div>
+
+
+              <div class="row mb-4" *ngIf="urlTemplate">
+                <div ng-switch-when="url">
+                    <p class="text-muted">If url provided the app will open the external url in the browser. If not the app will open at normal state.</p>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="icon-link"></i>
+                        </span>
+                      </div>
+                      <input type="text" [(ngModel)]="pushNotificationData.url" class="form-control" placeholder="External Url. ex https://www.google.com" (change)="filterItem">
+                    </div>
+                </div>
+              </div>
+                
 
               <div class="dropdown-divider mb-4"></div>
 
-              <div class="row">
-                  <div class="col-6">
+              <div class="d-flex bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
                     <p>Total number of receivers: <strong class="receivers-number">{{users.count}}</strong></p>
                   </div>
+                  <!-- <button type="button" class="btn btn-primary p-2 bd-highlight" (click)="isCollapsed = !isCollapsed"
+                          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"> Show Receivers Infos
+                  </button> -->
+
                   <ul class="heroes">
                     <!-- <li *ngFor="let user of users.items">
                       <span class="badge">{{user.phone_no}}</span> {{user.name}}
                     </li> -->
                   </ul>
                 </div>
+
+                <!-- <div id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header">
+                    <div class="well well-lg">Some content</div>
+                  </div> -->
 
               <div class="row mb-4">
                 <div class="col-6">
