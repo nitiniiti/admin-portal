@@ -4,17 +4,18 @@ import { environment } from '../../../environments/environment';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthService } from '../../services';
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginService {
 
-    constructor(private http: HttpClient, ) { }
+    constructor(private http: HttpClient, private auth: AuthService) { 
+    }
 
     login(loginData) {
-        console.log('login');
-        return this.http.post(environment.apiBaseUrl + 'login', loginData)
+        return this.auth.login(loginData.username, loginData.password)
     }
 
 }

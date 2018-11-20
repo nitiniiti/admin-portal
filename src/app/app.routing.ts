@@ -17,14 +17,18 @@ import { MonitoringComponent } from './views/monitoring/monitoring.component';
 import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
 import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
 import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
+import { PushNotificationComponent } from './views/push-notification/push-notification.component';
+
+import { AuthGuard } from './guards';
 
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
+  {  path: '', component: DefaultLayoutComponent, canActivate: [AuthGuard] },
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'login',
     component: LoginComponent,
@@ -99,7 +103,14 @@ export const routes: Routes = [
         data: {
           title: 'Generate Invite Codes'
         }
-      }
+    },
+    {
+      path: 'app-push-notification',
+        component: PushNotificationComponent,
+        data: {
+          title: 'Yaqoot Push Notification Service'
+        }
+    }
     ]
   }
 ];

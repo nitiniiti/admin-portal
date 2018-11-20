@@ -1,0 +1,186 @@
+
+  <div class="row mb-4">
+      <div class="col-md-8 mx-auto">
+        <div class="card-group">
+          <div class="card p-4">
+            <div class="card-body">
+
+
+
+              <h4 class="title">Title</h4>
+              <p class="text-muted">The title of the notification</p>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-pin"></i>
+                  </span>
+                </div>
+                <input type="text" [(ngModel)]="pushNotificationData.titleEn" class="form-control" placeholder="English Title">
+                <input type="text" [(ngModel)]="pushNotificationData.titleAr" class="form-control" placeholder="Arabic Title">
+
+              </div>
+
+              <h4 class="title">Message</h4>
+              <p class="text-muted">The body of the notification</p>
+
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-speech"></i>
+                  </span>
+                </div>
+                <input type="text" [(ngModel)]="pushNotificationData.messageEn" class="form-control" placeholder="English Message">
+                <input type="text" [(ngModel)]="pushNotificationData.messageAr" class="form-control" placeholder="Arabic Message">
+              </div>
+
+              <div class="dropdown-divider mb-4"></div>
+
+              <h4 class="title">Filter Receivers</h4>
+
+              <div class="row mb-4">
+                <div class="col-sm">
+                  <p class="text-muted">(Optional) Language</p>
+                  <select class="form-control" [(ngModel)]="pushNotificationData.language" (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': 'en', name: 'English'},{'value': 'ar', name: 'Arabic'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+                <div class="col-sm">
+                  <p class="text-muted">(Optional) Platform</p>
+                  <select class="form-control" [(ngModel)]="pushNotificationData.phone_type" (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': 'ios', name: 'iOS'},{'value': 'android', name: 'Android'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+                <div class="col-sm">
+                    <p class="text-muted">(Optional) Status</p>
+                  <select class="form-control" [(ngModel)]="pushNotificationData.status"  (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': '1', name: '1'},{'value': '0', name: '0'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+                <div class="col-sm">
+                    <p class="text-muted">(Optional) App Version</p>
+                  <input type="text" [(ngModel)]="pushNotificationData.app_version" class="form-control" placeholder="Version">
+
+                </div>
+              </div>
+
+              <p class="text-muted">(Optional) Date of registeration</p>
+
+              <div class="row mb-4">
+                <div class="col-sm form-group">
+                  <input type="text"
+                         [(ngModel)]="pushNotificationData.created.from"
+                         placeholder="from date - 10/11/2018"
+                         class="form-control"
+                         bsDatepicker
+                         (ngModelChange)="filterItem()">
+                </div>
+                <div class="col-sm form-group">
+                  <input type="text"
+                         [(ngModel)]="pushNotificationData.created.to"
+                         placeholder="to date - 0/11/2018"
+                         class="form-control"
+                         bsDatepicker
+                         (ngModelChange)="filterItem()">
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-sm">
+                  <p class="text-muted">(Optional) Has Send a Gift?</p>
+                  <select class="form-control" [(ngModel)]="pushNotificationData.hasSentGift" (change)="filterItem()" >
+                    <option *ngFor="let pow of [{'value': true, name: 'True'},{'value': false, name: 'False'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-4" *ngIf="pushNotificationData.hasSentGift === 'true'">
+                <div class="col-sm">
+                  <p class="text-muted">Gift Type</p>
+                  <select class="form-control" [(ngModel)]="pushNotificationData.gift_type" (change)="filterItem()">
+                    <option *ngFor="let pow of [{'value': 'free', name: 'free'},{'value': 'ecomm', name: 'Paid Gift'}, {'value': '', name: 'Both'}]" [value]="pow.value">{{pow.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="dropdown-divider mb-4"></div>
+
+              <h4 class="title">(Optional) External Url</h4>
+
+
+
+              <div class="row mb-4">
+                <div class="col-sm">
+                  <!-- Default unchecked -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked" value="store" name="defaultExampleRadios" (click)="showUrlTemplete(false)">
+                    <label class="custom-control-label" for="defaultUnchecked">Open the store (iOS & Android).</label>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <!-- Default checked -->
+                  <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="defaultChecked" value="url" name="defaultExampleRadios" checked (click)="showUrlTemplete(true)">
+                      <label class="custom-control-label" for="defaultChecked">Do not open the store.</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row mb-4" *ngIf="urlTemplate">
+                <div ng-switch-when="url">
+                    <p class="text-muted">If url provided the app will open the external url in the browser. If not the app will open at normal state.</p>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="icon-link"></i>
+                        </span>
+                      </div>
+                      <input type="text" [(ngModel)]="pushNotificationData.url" class="form-control" placeholder="External Url. ex https://www.google.com" (change)="filterItem">
+                    </div>
+                </div>
+              </div>
+                
+
+              <div class="dropdown-divider mb-4"></div>
+
+              <div class="d-flex bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
+                    <p>Total number of receivers: <strong class="receivers-number">{{users.count}}</strong></p>
+                  </div>
+                  <!-- <button type="button" class="btn btn-primary p-2 bd-highlight" (click)="isCollapsed = !isCollapsed"
+                          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"> Show Receivers Infos
+                  </button> -->
+
+                  <ul class="heroes">
+                    <!-- <li *ngFor="let user of users.items">
+                      <span class="badge">{{user.phone_no}}</span> {{user.name}}
+                    </li> -->
+                  </ul>
+                </div>
+
+                <!-- <div id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header">
+                    <div class="well well-lg">Some content</div>
+                  </div> -->
+
+              <div class="row mb-4">
+                <div class="col-6">
+                  <button type="button" (click)="SendPushNotification()" class="btn btn-primary px-4">Send</button>
+                </div>
+              </div>
+
+              
+
+              
+              
+              <div *ngFor="let alert of alerts">
+                <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onAlertClosed(alert)">{{ alert.msg }}</alert>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

@@ -6,7 +6,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -30,7 +30,8 @@ import { MonitoringComponent } from './views/monitoring/monitoring.component';
 import { SMSInviteComponent } from './views/earlyaccess/smsInvite.component';
 import { EmailInviteComponent } from './views/earlyaccess/emailInvite.component';
 import { GenerateInviteCodeComponent } from './views/earlyaccess/generateInviteCode.component';
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { PushNotificationComponent } from './views/push-notification/push-notification.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 
 const APP_CONTAINERS = [
@@ -52,6 +53,16 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { JwtInterceptor } from './helper/jwt.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { AuthService, PushNotificationService } from './services';
+
 
 @NgModule({
   imports: [
@@ -64,7 +75,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
+    AlertModule.forRoot(),
+    ModalModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CollapseModule.forRoot(),
     ChartsModule,
     FormsModule,
     HttpClientModule,
@@ -84,12 +100,20 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     MonitoringComponent,
     SMSInviteComponent,
     EmailInviteComponent,
-    GenerateInviteCodeComponent
+    GenerateInviteCodeComponent,
+    PushNotificationComponent,
+    ConfirmComponent
   ],
-  providers: [{
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthService,
+    PushNotificationService,
+    {
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+    useClass: HashLocationStrategy,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

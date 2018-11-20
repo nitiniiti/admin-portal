@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://10.123.54.92:3000/admin/'
+  apiBaseUrl: 'https://dev.maanaginx.com/admin/' //PROD
+  //apiBaseUrl: 'http://10.123.54.92:3000/admin/' //DEV
 };

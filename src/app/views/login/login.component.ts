@@ -20,17 +20,17 @@ export class LoginComponent {
   login() {
     if (this.password && this.username) {
       console.log(this.router);
-      let loginObject = {
+      const loginObject = {
         username: this.username,
         password: this.password
-      }
+      };
       this.loginService.login(loginObject).subscribe((data) => {
         this.router.navigate(['/dashboard'])
       }, (err) => {
         this.showError = true;
         this.showMessage = false;
         console.log('error', err);
-      })
+      });
     } else {
       this.showMessage = true;
       this.showError = false;
